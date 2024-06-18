@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { getByDisplayValue, render } from "@testing-library/react";
 import { useEffect, useReducer, useState } from "react";
