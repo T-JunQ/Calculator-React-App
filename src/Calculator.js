@@ -4,10 +4,6 @@ import { useEffect, useReducer, useState } from "react";
 import { useInRouterContext } from "react-router-dom";
 import { e, isOperatorNode, round } from "mathjs";
 
-// paranthesis
-// histoyr
-// keypress
-
 export default function Calculator() {
   const operators = ["+", "-", "*", "/", "%"];
 
