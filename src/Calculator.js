@@ -1,8 +1,6 @@
 import styles from "./Calculator.css";
-import { getByDisplayValue, render } from "@testing-library/react";
-import { useEffect, useReducer, useState } from "react";
-import { useInRouterContext } from "react-router-dom";
-import { e, isOperatorNode, round } from "mathjs";
+import { useEffect, useState } from "react";
+import { round } from "mathjs";
 
 export default function Calculator() {
   const operators = ["+", "-", "*", "/", "%"];
@@ -91,7 +89,7 @@ export default function Calculator() {
       setHistory(newHistory);
 
       setInputVal(
-        output != null || output != undefined
+        output != null || output !== undefined
           ? round(Number(output), 5).toString()
           : "Undefined"
       );
@@ -140,7 +138,7 @@ export default function Calculator() {
   }
 
   function handleC() {
-    if (inputVal == "Undefined" || inputVal == "Infinity") {
+    if (inputVal === "Undefined" || inputVal === "Infinity") {
       setInputVal("");
     } else if (inputVal.length > 1) {
       const newInput = inputVal.slice(0, -1);

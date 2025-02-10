@@ -73,7 +73,7 @@ body {
 
 .board-row:after {
   clear: both;
-  content: '';
+  content: "";
   display: table;
   margin-left: auto;
 }
@@ -88,4 +88,11 @@ body {
 
 .game-info {
   margin-left: 20px;
+}
+
+.clearboard {
+  height: fit-content;
+  padding: 0px;
+  background-color: aqua;
+  border: black solid 2px;
 }

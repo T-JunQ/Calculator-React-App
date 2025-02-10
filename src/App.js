@@ -1,6 +1,5 @@
 import "./App.css";
-import { getByDisplayValue, render } from "@testing-library/react";
-import { useEffect, useReducer, useState } from "react";
+import { useState } from "react";
 
 function Square({ value, onSquareClick }) {
   return (
@@ -33,25 +32,11 @@ export default function Board() {
 
     for (let i = 0; i < squares.length - 1; i++) {
       const set = new Set(squares[i]);
-      if (set.size == 1 && !set.has(null)) {
+      if (set.size === 1 && !set.has(null)) {
         console.log("Win");
         setWinner(true);
         return;
       }
-
-      // let colset = new Set();
-      // for (let j = 0; j < squares[i].length; j++) {
-      //   console.log(squares[i][j]);
-      //   colset.add(squares[i][j]);
-      // }
-      // console.log("loop");
-      // console.log(colset);
-      // console.log("Size:", colset.size);
-
-      // if (colset.size == 1 && !colset.has(null)) {
-      //   setWinner(true);
-      //   return;
-      // }
     }
 
     for (let i = 0; i < squares[0].length; i++) {
@@ -64,7 +49,7 @@ export default function Board() {
       console.log(colset);
       console.log("Size:", colset.size);
 
-      if (colset.size == 1 && !colset.has(null)) {
+      if (colset.size === 1 && !colset.has(null)) {
         setWinner(true);
         return;
       }
@@ -77,8 +62,8 @@ export default function Board() {
       diagonalright.add(squares[i][squares[0].length - 1 - i]);
     }
     if (
-      (diagonalleft.size == 1 && !diagonalleft.has(null)) ||
-      (diagonalright.size == 1 && !diagonalright.has(null))
+      (diagonalleft.size === 1 && !diagonalleft.has(null)) ||
+      (diagonalright.size === 1 && !diagonalright.has(null))
     ) {
       setWinner(true);
       return;
@@ -132,9 +117,9 @@ export default function Board() {
   function goBack(value, i) {
     setCurrMove(i);
     setSquares(value);
-    setXNext((i + 1) % 2 == 0);
+    setXNext((i + 1) % 2 === 0);
 
-    if (currMove != history.length + 1) {
+    if (currMove !== history.length + 1) {
       setWinner(false);
     }
   }
@@ -183,7 +168,9 @@ export default function Board() {
 
       <h5 style={{ marginTop: 10 }}>{xNext ? "X" : "O"}'s turn</h5>
 
-      <button onClick={clearBoard}>Clear Board</button>
+      <button className="clearboard" onClick={clearBoard}>
+        Clear Board
+      </button>
 
       <form
         onSubmit={(e) => {
@@ -208,57 +195,14 @@ export default function Board() {
           required
         ></input>
         <br />
-        <button type="submit" style={{ marginTop: 2 }}>
+        <button
+          className="clearboard"
+          type="submit"
+          style={{ marginTop: "5px" }}
+        >
           Apply Changes
         </button>
       </form>
     </>
   );
 }
-
-// return () => {
-//   rows.forEach((i) => {
-//     <h1>e</h1>;
-//     cols.forEach((j) => {
-//       return (
-//         <>
-//           <h1>e</h1> <Square value={rows[i][j]} />
-//         </>
-//       );
-//     });
-//   });
-// };
-
-// return Array(rows).fill(
-//   <div className="board-row">
-//     {Array(rows)
-//       .fill()
-//       .map((v, i) => (
-//         <Square></Square>
-//       ))}
-//   </div>
-// );
-// }
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
